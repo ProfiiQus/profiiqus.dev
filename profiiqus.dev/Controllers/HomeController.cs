@@ -7,22 +7,17 @@ namespace profiiqus.dev.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private GitHubAPIModel _gitHubAPIModel;
+        private IndexModel _indexModel;
 
         public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
             _logger = logger;
-            _gitHubAPIModel = new GitHubAPIModel(configuration);
+            _indexModel = new IndexModel(configuration);
         }
 
         public IActionResult Index()
         {
-            return View(_gitHubAPIModel);
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            return View(_indexModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

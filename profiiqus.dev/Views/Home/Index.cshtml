@@ -1,27 +1,51 @@
-﻿@model GitHubAPIModel
+﻿@model IndexModel
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "About";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-
-    <p>My open-source <a href="https://github.com/ProfiiQus?tab=repositories">repositories</a> language statistics</p>
-    <div class="github-stats-wrapper">
-        <div class="row">
-            @foreach(KeyValuePair<String, Double> kvp in Model.GetLanguageStats()) {
-                <div class="col-md-6 mb-3">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="@kvp.Value" aria-valuemin="0" aria-valuemax="100" style="width: @kvp.Value%;">
-                            
-                        </div>
-                        <span class="progress-type">@kvp.Key</span>
-                        <span class="progress-completed">@string.Format("{0:N2}%", kvp.Value)</span>
-                    </div>
-                </div>
-            }
+<div class="container" style="margin-top: 1rem;">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <img src="img/profiiqus.png" class="introduction-photo rounded" />
+        </div>
+        <div class="col-md-8 h-100 d-flex justify-content-center align-items-center">
+            <div class="introduction">
+                <p>
+                    Hey there, my name is <b>Pavel Fesenko</b> aka. ProfiiQus. I am @Model.GetYearsSinceBirthday() years old, currently a student & software developer from the <img src="img/czech-flag.png" class="icon"/> Czech Republic.
+                    Currently, I'm studying at the <a href="https://fit.cvut.cz/en">Faculty of Information Technology, CTU in Prague</a> (FIT CTU). I have experience in many IT branches, such as Software Development, DevOps, System administration and others.
+                </p>
+                <p>
+                    In the past, I have worked with many technologies, including but not limited to; 
+                    <ul>
+                        <li><b>Programming languages:</b> Java, Kotlin, C#, Dart, Golang, C, C++</li>
+                        <li><b>Other languages:</b> SQL, HTML, CSS, JS, PHP</li>
+                        <li><b>Technologies:</b> ASP.NET, Linux, Git, Docker, Openstack, Kubernetes, Jenkins, Nginx, Puppet, Foreman</li>
+                    </ul>
+                </p>
+            </div>
         </div>
     </div>
+</div>
 
+<div class="row">
+    <hr />
+    <div class="col-md-12">
+        <div class="github-stats-wrapper">
+            <h3>My open-source <a href="https://github.com/ProfiiQus?tab=repositories">repositories</a> language statistics</h3>
+            <div class="row">
+                @foreach(KeyValuePair<String, Double> kvp in Model.GetGitHubLanguageStats()) {
+                    <div class="col-md-6 mb-3">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="@kvp.Value" aria-valuemin="0" aria-valuemax="100" style="width: @kvp.Value%;">
+                            
+                            </div>
+                            <span class="progress-type">@kvp.Key</span>
+                            <span class="progress-completed">@string.Format("{0:N2}%", kvp.Value)</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 </div>
