@@ -1,0 +1,27 @@
+﻿@model GitHubAPIModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <div class="github-stats-wrapper">
+        <div class="row">
+            @foreach(KeyValuePair<String, Double> kvp in Model.GetLanguageStats()) {
+                <div class="col-md-6 mb-3">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@kvp.Value" aria-valuemin="0" aria-valuemax="100" style="width: @kvp.Value%;">
+                            
+                        </div>
+                        <span class="progress-type">@kvp.Key</span>
+                        <span class="progress-completed">@string.Format("{0:N2}%", kvp.Value)</span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
